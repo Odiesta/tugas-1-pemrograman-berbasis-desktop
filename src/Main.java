@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -17,50 +16,47 @@ public class Main {
         System.out.println("Pilih kamar dengan mengetikan nomor kamar.");
         System.out.println("Untuk memilih lebih dari 1 kamar, pisahkan dengan koma (contoh: 101,102)");
         System.out.print("Masukkan nomor kamar yang ingin dipesan: ");
-        if (input.hasNext()) {
-            String pilihan = input.next();
-            String[] daftarNomorKamar = pilihan.split(",");
-            int jumlahPilihan = daftarNomorKamar.length;
-            System.out.println();
 
-            if (jumlahPilihan == 1) {
-                Kamar kamarPilihan = pilihKamar(daftarKamar, Integer.parseInt(daftarNomorKamar[0]));
+        String pilihan = input.next();
+        String[] daftarNomorKamar = pilihan.split(",");
+        int jumlahPilihan = daftarNomorKamar.length;
+        System.out.println();
 
-                if (kamarPilihan != null) {
-                    Kamar[] kamarPesanan = {kamarPilihan};
-                    memesanKamar(kamarPesanan, lamaMenginap);
-                    cetakStruk(kamarPesanan, lamaMenginap);
-                } else {
-                    System.out.println("Kamar tidak ada");
-                }
-            } else if (jumlahPilihan == 2) {
-                Kamar kamar1 = pilihKamar(daftarKamar, Integer.parseInt(daftarNomorKamar[0]));
-                Kamar kamar2 = pilihKamar(daftarKamar, Integer.parseInt(daftarNomorKamar[1]));
+        if (jumlahPilihan == 1) {
+            Kamar kamarPilihan = pilihKamar(daftarKamar, Integer.parseInt(daftarNomorKamar[0]));
 
-                if (kamar1 != null && kamar2 != null) {
-                    Kamar[] kamarPesanan = {kamar1, kamar2};
-                    memesanKamar(kamarPesanan, lamaMenginap);
-                    cetakStruk(kamarPesanan, lamaMenginap);
-                } else {
-                    System.out.println("Terdapat Kamar yang tidak ada");
-                }
-            } else if (jumlahPilihan == 3) {
-                Kamar kamar1 = pilihKamar(daftarKamar, Integer.parseInt(daftarNomorKamar[0]));
-                Kamar kamar2 = pilihKamar(daftarKamar, Integer.parseInt(daftarNomorKamar[1]));
-                Kamar kamar3 = pilihKamar(daftarKamar, Integer.parseInt(daftarNomorKamar[2]));
-
-                if (kamar1 != null && kamar2 != null && kamar3 != null) {
-                    Kamar[] kamarPesanan = {kamar1, kamar2, kamar3};
-                    memesanKamar(kamarPesanan, lamaMenginap);
-                    cetakStruk(kamarPesanan, lamaMenginap);
-                } else {
-                    System.out.println("Terdapat Kamar yang tidak ada");
-                }
+            if (kamarPilihan != null) {
+                Kamar[] kamarPesanan = {kamarPilihan};
+                memesanKamar(kamarPesanan, lamaMenginap);
+                cetakStruk(kamarPesanan, lamaMenginap);
             } else {
-                System.out.println("Tidak bisa memesan lebih dari 3 kamar");
+                System.out.println("Kamar tidak ada");
+            }
+        } else if (jumlahPilihan == 2) {
+            Kamar kamar1 = pilihKamar(daftarKamar, Integer.parseInt(daftarNomorKamar[0]));
+            Kamar kamar2 = pilihKamar(daftarKamar, Integer.parseInt(daftarNomorKamar[1]));
+
+            if (kamar1 != null && kamar2 != null) {
+                Kamar[] kamarPesanan = {kamar1, kamar2};
+                memesanKamar(kamarPesanan, lamaMenginap);
+                cetakStruk(kamarPesanan, lamaMenginap);
+            } else {
+                System.out.println("Terdapat Kamar yang tidak ada");
+            }
+        } else if (jumlahPilihan == 3) {
+            Kamar kamar1 = pilihKamar(daftarKamar, Integer.parseInt(daftarNomorKamar[0]));
+            Kamar kamar2 = pilihKamar(daftarKamar, Integer.parseInt(daftarNomorKamar[1]));
+            Kamar kamar3 = pilihKamar(daftarKamar, Integer.parseInt(daftarNomorKamar[2]));
+
+            if (kamar1 != null && kamar2 != null && kamar3 != null) {
+                Kamar[] kamarPesanan = {kamar1, kamar2, kamar3};
+                memesanKamar(kamarPesanan, lamaMenginap);
+                cetakStruk(kamarPesanan, lamaMenginap);
+            } else {
+                System.out.println("Terdapat Kamar yang tidak ada");
             }
         } else {
-            System.out.println("Pilihan tidak dimengerti");
+            System.out.println("Tidak bisa memesan lebih dari 3 kamar");
         }
 
     }
@@ -146,13 +142,13 @@ public class Main {
 
     public static Kamar pilihKamar(Kamar[] daftarKamar, int nomorPilihan) {
         Kamar kamarPilihan = null;
-        if (nomorPilihan == daftarKamar[0].getNomor()) {
+        if (nomorPilihan == daftarKamar[0].getNomor() && daftarKamar[0].isKetersediaan()) {
             kamarPilihan = daftarKamar[0];
-        } else if (nomorPilihan == daftarKamar[1].getNomor()) {
+        } else if (nomorPilihan == daftarKamar[1].getNomor() && daftarKamar[1].isKetersediaan()) {
             kamarPilihan = daftarKamar[1];
-        } else if (nomorPilihan == daftarKamar[2].getNomor()) {
+        } else if (nomorPilihan == daftarKamar[2].getNomor() && daftarKamar[2].isKetersediaan()) {
             kamarPilihan = daftarKamar[2];
-        } else if (nomorPilihan == daftarKamar[3].getNomor()) {
+        } else if (nomorPilihan == daftarKamar[3].getNomor() && daftarKamar[3].isKetersediaan()) {
             kamarPilihan = daftarKamar[3];
         }
 
@@ -164,24 +160,24 @@ public class Main {
 
         if (jumlahKamar == 1) {
             Kamar kamarPilihan = daftarKamarPilihan[0];
-            cekKamar(kamarPilihan, lamaMenginap);
+            cekKetersediaanKamar(kamarPilihan, lamaMenginap);
         } else if (jumlahKamar == 2) {
             Kamar kamarPilihan1 = daftarKamarPilihan[0];
             Kamar kamarPilihan2 = daftarKamarPilihan[1];
-            cekKamar(kamarPilihan1, lamaMenginap);
-            cekKamar(kamarPilihan2, lamaMenginap);
+            cekKetersediaanKamar(kamarPilihan1, lamaMenginap);
+            cekKetersediaanKamar(kamarPilihan2, lamaMenginap);
         } else if (jumlahKamar == 3) {
             Kamar kamarPilihan1 = daftarKamarPilihan[0];
             Kamar kamarPilihan2 = daftarKamarPilihan[1];
             Kamar kamarPilihan3 = daftarKamarPilihan[2];
-            cekKamar(kamarPilihan1, lamaMenginap);
-            cekKamar(kamarPilihan2, lamaMenginap);
-            cekKamar(kamarPilihan3, lamaMenginap);
+            cekKetersediaanKamar(kamarPilihan1, lamaMenginap);
+            cekKetersediaanKamar(kamarPilihan2, lamaMenginap);
+            cekKetersediaanKamar(kamarPilihan3, lamaMenginap);
         }
 
     }
 
-    public static void cekKamar(Kamar kamarPilihan, int lamaMenginap) {
+    public static void cekKetersediaanKamar(Kamar kamarPilihan, int lamaMenginap) {
         if (kamarPilihan.isKetersediaan()) {
             System.out.println("Kamar tersedia");
 
